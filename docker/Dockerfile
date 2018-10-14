@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:latest
 MAINTAINER Fritz SMH <fritz.smh@gmail.com>
 
 ### Configuration #################################
@@ -55,7 +55,8 @@ RUN apt-get install -y \
     git 
     
 RUN pip install netifaces \
- && pip install sphinx-better-theme
+ && pip install sphinx-better-theme \
+ && pip install chardet pytz PyMySQL
 
  
 ### Database server
@@ -128,6 +129,7 @@ RUN pip install Flask-Themes2
 RUN apt-get install -y libpq-dev
 RUN pip install alembic
 RUN pip install SQLAlchemy-Utils
+RUN pip install psutil requests libmagic pyopenssl
 
 # Domogik-mq
 RUN cd /opt/dmg/domogik-mq \
@@ -142,7 +144,7 @@ RUN /bin/bash -c "/usr/bin/mysqld_safe &" \
 
 # Domoweb
 RUN cd /opt/dmg/domoweb \
- && python install.py --user domogik 
+ && python install.py --nodeps --user domogik 
  
 
 ### Install a few packages and their needed dependencies
