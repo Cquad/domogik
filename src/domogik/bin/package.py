@@ -52,7 +52,7 @@ import zipfile
 import json
 import shutil
 import requests
-import magic
+#import magic
 import tempfile
 from distutils import version
 import time
